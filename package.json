@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@blockworks-foundation/mango-client": "^3.3.5"
+  },
+  "name": "tsclient",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "author": "spacemonkey",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
+}
