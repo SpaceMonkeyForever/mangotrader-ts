@@ -12,7 +12,7 @@ import {
     makePlacePerpOrderInstruction,
     BookSide,
     BookSideLayout,
-    makeConsumeEventsInstruction
+    makeConsumeEventsInstruction, Cluster
 } from "@blockworks-foundation/mango-client";
 import BN from 'bn.js';
 import fetch from 'cross-fetch';
@@ -40,14 +40,18 @@ class MyMangoClient {
 
     }
 
+
     async init() {
-        const cluster = 'mainnet';
-        const group = 'mainnet.1';
+        const cluster = 'devnet';
+        const group = 'devnet.3';
         const myMangoAccountAddress = 'DpDCwU9iihA54hRxyB8DwnKWTrLBPKGea85NurHqjJrz';
 
         const clusterData = IDS.groups.find((g) => {
             return g.name == group && g.cluster == cluster;
         });
+
+        // console.log(IDS)
+
         this.mangoProgramIdPk = new PublicKey(clusterData.mangoProgramId);
         this.serumProgramIdPk = new PublicKey(clusterData.serumProgramId);
 
@@ -57,6 +61,10 @@ class MyMangoClient {
         const myMangoAccountPubKey = new PublicKey(myMangoAccountAddress);
         this.client = new MangoClient(connection, this.mangoProgramIdPk);
         this.myMangoAccount = await this.client.getMangoAccount(myMangoAccountPubKey, this.serumProgramIdPk);
+
+        // const payer = new Account()
+
+
     }
 
     async placePerpOrder(
